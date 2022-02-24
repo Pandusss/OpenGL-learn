@@ -12,6 +12,14 @@ void glfwWindowSizeCallback(GLFWwindow* window, int width, int height)
     glViewport(0, 0, g_windowSizeX, g_windowSizeY);
 }
 
+void glfwKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
+{
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+        glfwSetWindowShouldClose(window, GL_TRUE);
+    }
+}
+
+
 int main(void)
 {
     GLFWwindow* window;
@@ -34,6 +42,7 @@ int main(void)
     }
 
     glfwSetWindowSizeCallback(window, glfwWindowSizeCallback);
+    glfwSetKeyCallback(window, glfwKeyCallback);
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
